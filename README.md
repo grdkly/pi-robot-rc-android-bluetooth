@@ -20,10 +20,8 @@ First, ensure the Bluetooth packages are installed:
 
     sudo apt-get install bluez python-bluez
 
-It is widely reported that PNAT should be disabled, as it can prevent Bluetooth services from working correctly. This can be done by adding the following line to **/etc/bluetooth/main.conf**
-
-    DisablePlugins = pnat
-
+It was previously recommended that PNAT be disabled by adding the line `DisablePlugins = pnat` to  **/etc/bluetooth/main.conf**, however that key is not recognised by the current version of bluetoothd (5.23) and the underlying Debian bug appears to have been resolved.
+    
 The Bluetooth daemon needs to run in compatibility mode so that the serial port service can be enabled. This can be done by adding **-C** to the `bluetoothd` line in **/etc/systemd/system/dbus-org.bluez.service**
 
 The [Festival speech synthesiser](http://www.cstr.ed.ac.uk/projects/festival/) is used to make announcements, installed as described on [this page](http://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)#Festival_Text_to_Speech).
@@ -50,7 +48,7 @@ The script first flashes the LEDs, then illuminates the yellow LED while waiting
 
 The green LED is illuminated when a Bluetooth connection is initiated by the client Android device, and the server is ready to accept commands. The supported commands can be seen by inspecting the roboserver-bt.py script.
 
-The red LED is illuminated whenever the motors are active. The yellow LED is illuminated, accompanied by an audible warning from the buzzer, when an object is detected within 10 cm of the infrared unit.
+The red LED is illuminated whenever the motors are active. The yellow LED is illuminated, accompanied by an audible warning from the buzzer, when an object is detected within 10 cm of the ultrasound unit.
 
 ## Android App ##
 
